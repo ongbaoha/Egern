@@ -1,0 +1,18 @@
+#!name=Block OTA update for iOS and iPadOS
+#!desc=屏蔽 iOS/iPadOS 系统更新，无 iPad 设备可在「主机名」添加「-mesu.apple.com」
+#!system=ios
+
+domain_set:
+  - gdmf.apple.com
+    policy: REJECT
+
+url_rewrites:
+  - match: >-
+      ^https:\/\/mesu\.apple\.com\/assets\/com_apple_MobileAsset_SoftwareUpdate\/com_apple_MobileAsset_SoftwareUpdate\.xml
+    location: http://reject
+    status_code: 307
+
+mitm:
+  hostnames:
+    - mesu.apple.com
+
